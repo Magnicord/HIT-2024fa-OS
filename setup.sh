@@ -4,7 +4,7 @@
 # Operating System - Setup Script
 #
 # $Author$: Dr. GuoJun LIU<guojunos@163.com>
-# $Update$: 2020-04-14
+# $Update$: 2020-05-20
 
 export OSLAB_INSTALL_PATH=$HOME/oslab
 cat guojunos.icon
