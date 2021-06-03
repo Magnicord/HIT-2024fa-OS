@@ -12,7 +12,7 @@ cat guojunos.icon
 install_dep_amd64() {
     echo "* Install dependencies for x86_64(amd64) arch now......"
     sudo apt-get -y install build-essential 
-    sudo apt-get -y install qemu
+    sudo apt-get -y install qemu-system-x86
     sudo apt-get -y install xorg-dev libgtk2.0-dev
     sudo apt-get -y install bochs bochs-x bochs-sdl
     echo "* Install dependencies for x86_64(amd64) arch now......\033[34mDone\033[0m"
