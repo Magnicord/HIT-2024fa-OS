@@ -71,11 +71,11 @@ boot: a
 log: bochsout.txt
 
 # windows
-config_interface: win32config
-display_library: win32, options="gui_debug"
+# config_interface: win32config
+# display_library: win32, options="gui_debug"
 
 # Linux
-# display_library: x, options="gui_debug"
+display_library: x, options="gui_debug"
 
 # MacOS
 # display_library: sdl2
