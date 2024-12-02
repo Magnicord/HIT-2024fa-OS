@@ -15,7 +15,7 @@ CPP	+= -Iinclude
 # This can be either FLOPPY, /dev/xxxx or empty, in which case the
 # default of /dev/hd6 is used by 'build'.
 #
-ROOT_DEV= #FLOPPY 
+ROOT_DEV= #FLOPPY
 
 ARCHIVES=kernel/kernel.o mm/mm.o fs/fs.o
 DRIVERS =kernel/blk_drv/blk_drv.a kernel/chr_drv/chr_drv.a
@@ -29,15 +29,10 @@ LIBS	=lib/lib.a
 .c.o:
 	@$(CC) $(CFLAGS) -c -o $*.o $<
 
-all:	Image	
+all: Image
 
-Image: boot/bootsect boot/setup tools/system
-	@cp -f tools/system system.tmp
-	@$(STRIP) system.tmp
-	@$(OBJCOPY) -O binary -R .note -R .comment system.tmp tools/kernel
-	@tools/build.sh boot/bootsect boot/setup tools/kernel Image $(ROOT_DEV)
-	@rm system.tmp
-	@rm -f tools/kernel
+Image: boot/bootsect boot/setup
+	@tools/build.sh boot/bootsect boot/setup none Image $(ROOT_DEV)
 	@sync
 
 disk: Image
@@ -53,8 +48,8 @@ tools/system:	boot/head.o init/main.o \
 	$(DRIVERS) \
 	$(MATH) \
 	$(LIBS) \
-	-o tools/system 
-	@nm tools/system | grep -v '\(compiled\)\|\(\.o$$\)\|\( [aU] \)\|\(\.\.ng$$\)\|\(LASH[RL]DI\)'| sort > System.map 
+	-o tools/system
+	@nm tools/system | grep -v '\(compiled\)\|\(\.o$$\)\|\( [aU] \)\|\(\.\.ng$$\)\|\(LASH[RL]DI\)'| sort > System.map
 
 kernel/math/math.a:
 	@make -C kernel/math
@@ -91,7 +86,7 @@ tmp.s:	boot/bootsect.s tools/system
 clean:
 	@rm -f Image System.map tmp_make core boot/bootsect boot/setup
 	@rm -f init/*.o tools/system boot/*.o typescript* info bochsout.txt
-	@for i in mm fs kernel lib boot; do make clean -C $$i; done 
+	@for i in mm fs kernel lib boot; do make clean -C $$i; done
 info:
 	@make clean
 	@script -q -c "make all"
