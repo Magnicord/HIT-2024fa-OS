@@ -1,10 +1,10 @@
-# lab2
+# Lab 2 调试分析 Linux 0.00 多任务切换
 
 ## 当执行完 `system_interrupt` 函数，执行 `153` 行 `iret` 时，记录栈的变化情况
 
 相关代码如下：
 
-```asm
+```assembly
 /* system call handler */
 .align 2
 system_interrupt:
@@ -64,7 +64,7 @@ system_interrupt:
 
 相关代码如下：
 
-```asm
+```assembly
 /* Timer interrupt handler */
 .align 2
 timer_interrupt:
