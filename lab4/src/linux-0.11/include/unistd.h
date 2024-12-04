@@ -129,6 +129,9 @@
 #define __NR_ssetmask	69
 #define __NR_setreuid	70
 #define __NR_setregid	71
+/* 在现有系统调用号的末尾添加以下行 */
+#define __NR_iam    72
+#define __NR_whoami 73
 
 #define _syscall0(type,name) \
   type name(void) \
@@ -204,9 +207,9 @@ int execvp(const char * file, char ** argv);
 int execl(const char * pathname, char * arg0, ...);
 int execlp(const char * file, char * arg0, ...);
 int execle(const char * pathname, char * arg0, ...);
-//volatile void exit(int status);
+/* volatile void exit(int status); */
 void _exit(int status);
-//volatile void _exit(int status);
+/* volatile void _exit(int status); */
 int fcntl(int fildes, int cmd, ...);
 static int fork(void);
 int getpid(void);
