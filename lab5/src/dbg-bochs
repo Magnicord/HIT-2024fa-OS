@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# Written by GuoJun
+# Dec 3 2024
+
+export BXSHARE=/usr/local/bochs28/share/bochs
+export BOCHS=/usr/local/bochs28/bin
+
+if [ -e "$OSLAB_PATH/hdc-0.11.img.lock" ]; then
+	rm -rf $OSLAB_PATH/hdc-0.11.img.lock
+	echo delete hdc-0.11.img.lock 
+fi
+
+export OSLAB_PATH=$(dirname `which $0`)
+
+if [ ! -e "$OSLAB_PATH/hdc/umounted" ]; then
+	echo umount hdc first
+	sudo umount $OSLAB_PATH/hdc
+	if [ "$?" != "0" ]; then
+		exit
+	fi
+fi
+
+$BOCHS/bochs -q -f $OSLAB_PATH/bochs/linux-0.11.bxrc	

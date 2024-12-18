@@ -1,0 +1,7 @@
+target remote localhost:1234
+b main
+handle all nostop noprint
+set print pretty on
+set print array-indexes on
+c
+layout src
